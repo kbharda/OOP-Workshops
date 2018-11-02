@@ -7,9 +7,9 @@
 #ifndef SICT_CONTACT_H
 #define SICT_CONTACT_H
 
-#define MAX_CHAR 20
-
 namespace sict {
+
+	const int MAX_CHAR = 20;
 
 	class Contact
 	{
@@ -19,11 +19,13 @@ namespace sict {
 		long long* phoneNumber;
 		int noOfPhoneNum;
 
+		char* getPartialStr(const char[], int start, int end);
+
 	public:
 
 		Contact();
 
-		Contact(const char*, const long long*, int);
+		Contact(const char[], const long long[], int);
 
 		~Contact();
 

@@ -14,35 +14,52 @@ using namespace std;
 using namespace sict;
 
 namespace sict {
+	char * Contact::getPartialStr(const char str[], int start, int end)
+	{	
+		const int len = strlen(str);
+		char *temp = new char[len];
+		int i = 0;
+		while (str != '\0') {
+			if (start == i) {
+				strcpy(temp, str[i]);
+			}
+			i++;
+		}
+	}
 
 	Contact::Contact()
 	{
+		//Safe Empty State
 		this->contactName[0] = '\0';
 		this->phoneNumber = nullptr;
 		this->noOfPhoneNum = 0;
 	}
 
-	Contact::Contact(const char* contactname, const long long* phoneNumbers, int lengthOfNum)
+	Contact::Contact(const char contactname[], const long long phoneNumbers[], int lengthOfNum)
 	{
-
-		//memory Allocation
-		if (phoneNumbers != nullptr && phoneNumbers[0] != '\0')
-		{
-			phoneNumber = new long long[lengthOfNum];
+		if (
+			(contactname != nullptr && contactname[0] != '\0') &&
+			(phoneNumbers != nullptr) &&
+			(lengthOfNum != 0)
+			) {
+			for (int i = 0; i < lengthOfNum; i++) {
+				char phnNumber[14] = "";
+				sprintf(phnNumber, "%lld", phoneNumbers[i]);
+				phnNumber[14 - 1] = '\0';
+				if (strlen(phnNumber) == 11 || strlen(phnNumber) == 12) {
+					
+				}
+			}
 		}
-
-		// 16478313654
-		int i;
-		for (i = 0; i < lengthOfNum; i++)
-		{
-			long long n = phoneNumbers[i];
-
+		else {
+			this->contactName[0] = '\0';
+			this->phoneNumber = nullptr;
+			this->noOfPhoneNum = 0;
 		}
 	}
 
-	Contact::~Contact()
+	Contact::~Contact() //Memory Deallocation
 	{
-		//Memory Deallocation
 		delete[] phoneNumber;
 		phoneNumber = nullptr;
 	}
@@ -65,7 +82,11 @@ namespace sict {
 	{
 		if (isEmpty())
 		{
-
+			cout << "Empty contact!" << endl;
+		}
+		else
+		{
+			cout << this->contactName << endl;
 		}
 	}
 
