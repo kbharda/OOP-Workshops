@@ -22,51 +22,75 @@ namespace sict {
 		this->lengthOfPhoneNumber = 0;
 	}
 
-	Contact::Contact(const char contactname[], const long long phoneNumbers[], int lengthOfNum)
+	Contact::Contact(const char contactname[], const long long phoneNumbers[], int lengthOfNum) //3 Argument Construct
 	{
 		if (
-			(contactname != nullptr && contactname[0] != '\0') &&
-			(phoneNumbers != nullptr) &&
-			(lengthOfNum != 0)
+			(contactname != nullptr && contactname[0] != '\0') && //Name Not NULL
+			(phoneNumbers != nullptr) && //Phone not NULL
+			(lengthOfNum != 0) //Number length Not NULL
 			) {
-			int long long* pn = new int long long[lengthOfNum];
-			int validCount = 0;
+			// If parameters are not empty then valdate phone numbers 
+
+			int long long* pn = new int long long[lengthOfNum]; //create temp phonenumber array to hold valid numbers
+
+			int validCount = 0; // variable for valid phone number count
+
 			for (int i = 0; i < lengthOfNum; i++) {
-				char phnNumber[14] = "";
-				sprintf(phnNumber, "%lld", phoneNumbers[i]);
-				phnNumber[14 - 1] = '\0';
+
+				char phnNumber[14] = ""; // hold string type phone number
+
+				sprintf(phnNumber, "%lld", phoneNumbers[i]); //Convert long long to char[]
+
+				phnNumber[14 - 1] = '\0'; // set last char to null to avaoid memory leak
+
 				if (strlen(phnNumber) == 11 || strlen(phnNumber) == 12) {
-					int numberStart;
-					int areaCodeStart;
-					if (strlen(phnNumber) == 11) {
-						numberStart = 4;
-						areaCodeStart = 1;
+					// length of phone number is 10 plus country code(1 or 2 digits) i.e 11 or 12 in total
+					// if length of phone number is 11 or 12 then its a valid phone number
+
+
+					int numberStart; // index for validating 7 digit number
+					int areaCodeStart; // index for validating 3 digit area code
+
+					if (strlen(phnNumber) == 11) { //check if length of phone num = 11
+						numberStart = 4; // index for number is 4 if phone number length is 11
+						areaCodeStart = 1; // index for area code is 1 if phone number length is 11
 					}
 					else {
-						numberStart = 5;
-						areaCodeStart = 2;
+						numberStart = 5; // index for number is 5 if phone number length is 12
+						areaCodeStart = 2; // index for area code is 2 if phone number length is 12
 					}
+
+					// seperate number and area code using getPartialStr function
 					const char *number = this->getPartialStr(phnNumber, numberStart, strlen(phnNumber) - 1);
 					const char *areaCode = this->getPartialStr(phnNumber, areaCodeStart, areaCodeStart + 2);
+
+					// if first index of number, area code is NOT zero than its valid
+					// if first index of phoneNumber is not zero (which is country code) than its valid
 					if (!((number[0] - '0' == 0) || (areaCode[0] - '0' == 0) || (phnNumber[0] - '0' == 0))) {
-						pn[validCount++] = phoneNumbers[i];
+						pn[validCount++] = phoneNumbers[i]; // if phone number pases all validation then add
+						                                    // it to temp phone number and increment valid counter
 					}
 				}
-			}
-			if (validCount == 0) {
+			} // for end
+
+			if (validCount == 0) { // if valid counter is 0 then all phone numbers are invalid, then set object to safe empty state
 				this->contactName[0] = '\0';
 				this->phoneNumber = nullptr;
 				this->lengthOfPhoneNumber = 0;
 			}
 			else {
+				// Dynamically allocate memmory for current phone number array based on valid count;
 				this->phoneNumber = new long long[validCount];
 				for (int j = 0; j < validCount; j++) {
-					this->phoneNumber[j] = pn[j];
+					this->phoneNumber[j] = pn[j]; // copy all valid numbers from temp pn to current object
 				}
-				this->lengthOfPhoneNumber = validCount;
+				delete[] pn;
+				this->lengthOfPhoneNumber = validCount; // se the length of valid numbers to current object
 			}
 		}
 		else {
+
+			//set objects Safe Empty State
 			this->contactName[0] = '\0';
 			this->phoneNumber = nullptr;
 			this->lengthOfPhoneNumber = 0;
@@ -101,10 +125,10 @@ namespace sict {
 		}
 		else
 		{
-			
+
 			for (int i = 0; i < this->lengthOfPhoneNumber; i++) {
 				char phnNumber[14] = "";
-				sprintf(phnNumber, "%lld",this->phoneNumber[i]);
+				sprintf(phnNumber, "%lld", this->phoneNumber[i]);
 				int numberStart;
 				int areaCodeStart;
 				if (strlen(phnNumber) == 11) {
@@ -121,8 +145,8 @@ namespace sict {
 				const char *areaCode = this->getPartialStr(phnNumber, areaCodeStart, areaCodeStart + 2);
 				cout << areaCode << " ";
 				int j = 0;
-				while (number[j] != '\0') 
-				{	
+				while (number[j] != '\0')
+				{
 					if (j == 3) {
 						cout << "-";
 					}
@@ -133,7 +157,10 @@ namespace sict {
 			}
 		}
 	}
-
+	
+	/*
+		This function seperates the char* from the index passed and returns it.
+	*/
 	char * Contact::getPartialStr(char* str, int start, int end) const
 	{
 		const int len = strlen(str);
