@@ -17,9 +17,9 @@ namespace sict {
 
 		char contactName[MAX_CHAR + 1];
 		long long* phoneNumber;
-		int noOfPhoneNum;
+		int lengthOfPhoneNumber;
 
-		char* getPartialStr(const char[], int start, int end);
+		char* getPartialStr(char*, int start, int end) const;
 
 	public:
 
