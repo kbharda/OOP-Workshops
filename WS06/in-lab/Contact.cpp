@@ -32,7 +32,7 @@ namespace sict {
 			this->contactName[0] = '\0';
 		}
 
-		if (contactname != nullptr && contactname[0] != '\0'
+		if ((contactname != nullptr && contactname[0] != '\0')
 			(phoneNumbers != nullptr) && //Phone not NULL
 			(lengthOfNum != 0) //Number length Not NULL
 			) {
