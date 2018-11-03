@@ -24,8 +24,15 @@ namespace sict {
 
 	Contact::Contact(const char contactname[], const long long phoneNumbers[], int lengthOfNum) //3 Argument Construct
 	{
-		if (
-			(contactname != nullptr && contactname[0] != '\0') && //Name Not NULL
+		if (contactname != nullptr && contactname[0] != '\0') {
+			strncpy(this->contactName, contactname, MAX_CHAR);
+			this->contactName[MAX_CHAR] = '\0';
+		}
+		else {
+			this->contactName[0] = '\0';
+		}
+
+		if (contactname != nullptr && contactname[0] != '\0'
 			(phoneNumbers != nullptr) && //Phone not NULL
 			(lengthOfNum != 0) //Number length Not NULL
 			) {
@@ -68,13 +75,12 @@ namespace sict {
 					// if first index of phoneNumber is not zero (which is country code) than its valid
 					if (!((number[0] - '0' == 0) || (areaCode[0] - '0' == 0) || (phnNumber[0] - '0' == 0))) {
 						pn[validCount++] = phoneNumbers[i]; // if phone number pases all validation then add
-						                                    // it to temp phone number and increment valid counter
+															// it to temp phone number and increment valid counter
 					}
 				}
 			} // for end
 
 			if (validCount == 0) { // if valid counter is 0 then all phone numbers are invalid, then set object to safe empty state
-				this->contactName[0] = '\0';
 				this->phoneNumber = nullptr;
 				this->lengthOfPhoneNumber = 0;
 			}
@@ -91,7 +97,6 @@ namespace sict {
 		else {
 
 			//set objects Safe Empty State
-			this->contactName[0] = '\0';
 			this->phoneNumber = nullptr;
 			this->lengthOfPhoneNumber = 0;
 		}
@@ -119,14 +124,16 @@ namespace sict {
 
 	void Contact::display() const
 	{
+	//	cout << this->contactName << endl;
+
 		if (isEmpty())
 		{
 			cout << "Empty contact!" << endl;
 		}
 		else
 		{
-
-			for (int i = 0; i < this->lengthOfPhoneNumber; i++) {
+			cout << this->contactName << endl;
+			for (int i = 0; i < this->lengthOfPhoneNumber && this->phoneNumber != nullptr; i++) {
 				char phnNumber[14] = "";
 				sprintf(phnNumber, "%lld", this->phoneNumber[i]);
 				int numberStart;
@@ -157,9 +164,9 @@ namespace sict {
 			}
 		}
 	}
-	
+
 	/*
-		This function seperates the char* from the index passed and returns it.
+		This function seperates the char* from the index passed and return
 	*/
 	char * Contact::getPartialStr(char* str, int start, int end) const
 	{
