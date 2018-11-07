@@ -11,6 +11,7 @@
 #include "Contact.h"
 
 using namespace std;
+using namespace sict;
 
 namespace sict {
 	Contact::Contact()
@@ -165,20 +166,22 @@ namespace sict {
 		}
 	}
 
-	Contact::Contact(const Contact & copy)
-	{
+	Contact::Contact(const Contact& newCopy) {
+
+		// TODO: insert return statement here
+
 	}
 
-	Contact& Contact::operator=(const Contact & copy)
-	{
+	Contact & Contact::operator=(const Contact& newCopy) {
+	
 		// TODO: insert return statement here
 		return *this;
 	}
 
-	Contact& Contact::operator+=(long long rhs)
+	Contact & Contact::operator+=(const Contact & rhs)
 	{
-		//lengthOfPhoneNumber = rhs;
 		// TODO: insert return statement here
+		
 		return *this;
 	}
 

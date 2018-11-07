@@ -1,7 +1,9 @@
-// Workshop 6 - Class with a Resource
-// w6_at_home.cpp
-// Chris Szalwinski
-// 2018/10/26
+// Workshop 6 : Class with a resource
+// Name: Kashyap Bharda	
+// Student #: 140622176
+// Course: OOP244 Fall 2018
+// File: W6_at_home.cpp
+
 
 #include <iostream>
 #include "Contact.h"

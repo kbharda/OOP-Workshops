@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Contact.cpp">
+    <ClCompile Include="w6_at_home.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="w6_at_home.cpp">
+    <ClCompile Include="..\in-lab\Contact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Contact.h">
+    <ClInclude Include="..\in-lab\Contact.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

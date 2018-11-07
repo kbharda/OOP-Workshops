@@ -36,8 +36,7 @@ namespace sict {
 		Contact(const Contact&);
 		Contact& operator=(const Contact&);
 
-		Contact& operator+=(long long);
-
+		Contact& operator+=(const Contact& rhs);
 	};
 }
 #endif // !SICT_CONTACT_H
