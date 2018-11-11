@@ -1,11 +1,8 @@
-// Workshop 7 - Derived Classes
-// File w7_in_lab.cpp
-// Version 2.0
-// Date 2018/10/31
-// Author       Hasan Murtaza, Chris Szalwinski
-// Description
-//       This file demonstrates the client module of w7
-/////////////////////////////////////////////////////
+// Workshop 7 : Derived Classes
+// Name: Kashyap Bharda	
+// Student #: 140622176
+// Course: OOP244 Fall 2018
+// File: w7_in_lab.cpp
 
 #include <iostream>
 #include "Hero.h"
