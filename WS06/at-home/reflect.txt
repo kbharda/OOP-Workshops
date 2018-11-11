@@ -1,0 +1,19 @@
+**********************************************
+// Workshop 6 : Class with a resource
+// Name: Kashyap Bharda	
+// Student #: 140622176
+// Course: OOP244 Fall 2018
+// File: reflect.txt
+**********************************************
+
+1) Why does the copy assignment operator check for self-assignment before doing anything else?
+
+A. The copy constructor checks for self-assignment before doing anything else because we do not want to accidentally deallocate the memory of the source if it ends up being the same. This will result in prevent lost data.
+
+2) List how you avoided duplication of code.
+
+A. I had attempted to reduce redundant code by running the default constructor whenever I needed for set safe empty state, but unfortunately it was prone to error. If i had a duplication of code i create an extra function put duplication of code in it and call whenever i needed.
+
+3) List what you have learned in completing this workshop.
+
+A. This workshop helped me utilize and comprehend the copy constructor and copy assignment operators to a higher degree. Also, it helped gain familiarity with dynamic memory and debugging the errors that come with that.
