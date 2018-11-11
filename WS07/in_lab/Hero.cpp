@@ -47,13 +47,13 @@ namespace sict {
 	{
 		if (attack >= 0 )
 		{
-			if (healthHero > attack)
+			if (this->healthHero > attack)
 			{
-				healthHero -= attack;
+				this->healthHero -= attack;
 			}
 			else
 			{
-				healthHero = 0;
+				this->healthHero = 0;
 			}
 		}
 	}
@@ -121,6 +121,7 @@ namespace sict {
 		else if (right.isAlive())
 		{
 			cout << second << " in " << round << " rounds." << endl;
+			return second;
 		}
 		else if(left.isAlive() && right.isAlive())
 		{
