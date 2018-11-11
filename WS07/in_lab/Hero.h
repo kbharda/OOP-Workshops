@@ -17,12 +17,18 @@ namespace sict {
 
 	class Hero
 	{
-
+	private:
 		char heroName[MAX_NAME];
 		int healthHero;
 		int strengthHero;
 
 	public:
+
+		Hero();
+
+		Hero(const char*, int, int);
+
+		~Hero();
 
 		void operator-=(int attack);
 		
@@ -30,7 +36,8 @@ namespace sict {
 
 		int attackStrength() const;
 
-		friend 	ostream& operator<<(ostream& os, const Hero& hero);
+		friend std::ostream& operator<<(std::ostream&, const Hero&);
+
 	};
 
 	const Hero& operator*(const Hero& first, const Hero& second);

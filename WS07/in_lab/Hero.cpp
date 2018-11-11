@@ -9,9 +9,40 @@
 #include "Hero.h"
 
 using namespace std;
+using namespace sict;
 
 namespace sict {
-	
+	Hero::Hero()
+	{
+		this->heroName[0] = '\0';
+		this->healthHero = 0;
+		this->strengthHero = 0;
+	}
+
+	Hero::Hero(const char* name, int health, int strength)
+	{
+		if (
+			(name != nullptr && name[0] != '\0' && strcmp(name, "") != 0) &&
+			(health != 0) &&
+			(strength != 0)
+		   ) {
+			strncpy(this->heroName, name, MAX_NAME);
+			this->heroName[MAX_NAME] = '\0';
+			this->healthHero = health;
+			this->strengthHero = strength;
+		}
+		else {
+			*this = Hero();
+		}
+	}
+
+	Hero::~Hero()
+	{
+		this->heroName[0] = '\0';
+		this->healthHero = 0;
+		this->strengthHero = 0;
+	}
+
 	void Hero::operator-=(int attack)
 	{
 		if (attack >= 0 )
@@ -48,25 +79,53 @@ namespace sict {
 		}
 
 	}
+	
 
-	ostream & operator<<(ostream & os, const Hero & hero)
+	std::ostream & operator<<(std::ostream & os, const Hero & hero)
 	{
-		// TODO: insert return statement here
-		if (!(hero.heroName == NULL || hero.heroName[0] == '\0' || strcmp(hero.heroName, "") == 0
-			|| hero.healthHero < 0
-			|| hero.strengthHero < 0))
-		{
+		if (
+			(hero.heroName != nullptr && hero.heroName[0] != '\0' && strcmp(hero.heroName, "") != 0) &&
+			(hero.healthHero != 0) &&
+			(hero.strengthHero != 0)
+		   ) {
 			os << hero.heroName;
 		}
-		else
-		{
+		else {
 			os << "No hero";
 		}
+
+		return os;
 	}
+
 	const Hero & operator*(const Hero & first, const Hero & second)
 	{
-		// TODO: insert return statement here
+		Hero left = first;
+		Hero right = second;
+		int round = 0;
 
+		for (int i = 0; (i<MAX_ROUNDS) && left.isAlive() && right.isAlive(); i++)
+		{
+			left -= (right.attackStrength());
+			right -= (left.attackStrength());
+			round++;
+		}
 
+		cout << "Ancient Battle! " << first << " vs " << second << " : Winner is ";
+
+		if (left.isAlive())
+		{
+			cout << first << " in " << round << " rounds." << endl;
+			return first;
+		}
+
+		else if (right.isAlive())
+		{
+			cout << second << " in " << round << " rounds." << endl;
+		}
+		else if(left.isAlive() && right.isAlive())
+		{
+			cout << first << " in " << round << " rounds." << endl;
+		}
+		return first;
 	}
 }
