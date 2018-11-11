@@ -21,11 +21,15 @@ namespace sict {
 
 		char* getPartialStr(char*, int start, int end) const;
 
+		bool isPhoneValid(const long long);
+		void copyPhoneNumbers(long long[], long long[], int);
 	public:
 
 		Contact();
 
 		Contact(const char[], const long long[], int);
+		
+		Contact(const Contact&);
 
 		~Contact();
 
@@ -33,10 +37,9 @@ namespace sict {
 
 		void display() const;
 
-		Contact(const Contact&);
 		Contact& operator=(const Contact&);
 
-		Contact& operator+=(const Contact& rhs);
+		Contact& operator+=(const long long phoneNumber);
 	};
 }
 #endif // !SICT_CONTACT_H

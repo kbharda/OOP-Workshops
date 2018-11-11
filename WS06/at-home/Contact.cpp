@@ -44,40 +44,8 @@ namespace sict {
 			int validCount = 0; // variable for valid phone number count
 
 			for (int i = 0; i < lengthOfNum; i++) {
-
-				char phnNumber[14] = ""; // hold string type phone number
-
-				sprintf(phnNumber, "%lld", phoneNumbers[i]); //Convert long long to char[]
-
-				phnNumber[14 - 1] = '\0'; // set last char to null to avaoid memory leak
-
-				if (strlen(phnNumber) == 11 || strlen(phnNumber) == 12) {
-					// length of phone number is 10 plus country code(1 or 2 digits) i.e 11 or 12 in total
-					// if length of phone number is 11 or 12 then its a valid phone number
-
-
-					int numberStart; // index for validating 7 digit number
-					int areaCodeStart; // index for validating 3 digit area code
-
-					if (strlen(phnNumber) == 11) { //check if length of phone num = 11
-						numberStart = 4; // index for number is 4 if phone number length is 11
-						areaCodeStart = 1; // index for area code is 1 if phone number length is 11
-					}
-					else {
-						numberStart = 5; // index for number is 5 if phone number length is 12
-						areaCodeStart = 2; // index for area code is 2 if phone number length is 12
-					}
-
-					// seperate number and area code using getPartialStr function
-					const char *number = this->getPartialStr(phnNumber, numberStart, strlen(phnNumber) - 1);
-					const char *areaCode = this->getPartialStr(phnNumber, areaCodeStart, areaCodeStart + 2);
-
-					// if first index of number, area code is NOT zero than its valid
-					// if first index of phoneNumber is not zero (which is country code) than its valid
-					if (!((number[0] - '0' == 0) || (areaCode[0] - '0' == 0) || (phnNumber[0] - '0' == 0))) {
-						pn[validCount++] = phoneNumbers[i]; // if phone number pases all validation then add
-															// it to temp phone number and increment valid counter
-					}
+				if (this->isPhoneValid(phoneNumbers[i])) {
+					pn[validCount++] = phoneNumbers[i];
 				}
 			} // for end
 
@@ -105,14 +73,23 @@ namespace sict {
 
 	Contact::~Contact() //Memory Deallocation
 	{
-		delete[] phoneNumber;
-		phoneNumber = nullptr;
+		if (this->lengthOfPhoneNumber > 0) {
+			delete[] this->phoneNumber;
+		}
+		else {
+			this->phoneNumber = nullptr;
+		}
+		this->contactName[0] = '\0';
+		this->lengthOfPhoneNumber = 0;
 	}
 
+	Contact::Contact(const Contact& newCopy) {
+		*this = newCopy;
+	}
 
 	bool Contact::isEmpty() const
 	{
-		if (this->phoneNumber == nullptr && this->contactName[0] == '\0' && this->lengthOfPhoneNumber == 0)
+		if (this->contactName[0] == '\0')
 		{
 			return true;
 		}
@@ -166,22 +143,31 @@ namespace sict {
 		}
 	}
 
-	Contact::Contact(const Contact& newCopy) {
-
-		// TODO: insert return statement here
-
-	}
-
-	Contact & Contact::operator=(const Contact& newCopy) {
-	
-		// TODO: insert return statement here
+	Contact& Contact::operator=(const Contact& rhs) {
+		strncpy(this->contactName, rhs.contactName, strlen(rhs.contactName));
+		this->contactName[strlen(rhs.contactName)] = '\0';
+		long long* phn = new long long[rhs.lengthOfPhoneNumber];
+		this->copyPhoneNumbers(phn, rhs.phoneNumber, rhs.lengthOfPhoneNumber);
+		this->phoneNumber = new long long[rhs.lengthOfPhoneNumber];
+		this->copyPhoneNumbers(this->phoneNumber, phn, rhs.lengthOfPhoneNumber);
+		this->lengthOfPhoneNumber = rhs.lengthOfPhoneNumber;
+		delete[] phn;
 		return *this;
 	}
 
-	Contact & Contact::operator+=(const Contact & rhs)
+	Contact& Contact::operator+=(const long long phoneNumber)
 	{
-		// TODO: insert return statement here
-		
+		if (this->isPhoneValid(phoneNumber)) {
+			long long* phn = new long long[this->lengthOfPhoneNumber];
+			this->copyPhoneNumbers(phn, this->phoneNumber, this->lengthOfPhoneNumber);
+			delete[] this->phoneNumber;
+			this->phoneNumber = new long long[this->lengthOfPhoneNumber + 1];
+			this->copyPhoneNumbers(this->phoneNumber, phn, this->lengthOfPhoneNumber);
+			this->phoneNumber[this->lengthOfPhoneNumber] = phoneNumber;
+			++this->lengthOfPhoneNumber;
+			delete[] phn;
+		}
+
 		return *this;
 	}
 
@@ -204,6 +190,51 @@ namespace sict {
 		}
 		temp[j] = '\0';
 		return temp;
+	}
+
+	bool Contact::isPhoneValid(const long long phoneNumber)
+	{
+		char phnNumber[14] = ""; // hold string type phone number
+
+		sprintf(phnNumber, "%lld", phoneNumber); //Convert long long to char[]
+		phnNumber[14 - 1] = '\0'; // set last char to null to avaoid memory leak
+
+		if (strlen(phnNumber) == 11 || strlen(phnNumber) == 12) {
+			// length of phone number is 10 plus country code(1 or 2 digits) i.e 11 or 12 in total
+			// if length of phone number is 11 or 12 then its a valid phone number
+
+
+			int numberStart; // index for validating 7 digit number
+			int areaCodeStart; // index for validating 3 digit area code
+
+			if (strlen(phnNumber) == 11) { //check if length of phone num = 11
+				numberStart = 4; // index for number is 4 if phone number length is 11
+				areaCodeStart = 1; // index for area code is 1 if phone number length is 11
+			}
+			else {
+				numberStart = 5; // index for number is 5 if phone number length is 12
+				areaCodeStart = 2; // index for area code is 2 if phone number length is 12
+			}
+
+			// seperate number and area code using getPartialStr function
+			const char *number = this->getPartialStr(phnNumber, numberStart, strlen(phnNumber) - 1);
+			const char *areaCode = this->getPartialStr(phnNumber, areaCodeStart, areaCodeStart + 2);
+
+			// if first index of number, area code is NOT zero than its valid
+			// if first index of phoneNumber is not zero (which is country code) than its valid
+			if (!((number[0] - '0' == 0) || (areaCode[0] - '0' == 0) || (phnNumber[0] - '0' == 0))) {
+				return true; // if phone number pases all validation then add
+													// it to temp phone number and increment valid counter
+			}
+		}
+		return false;
+	}
+
+	void Contact::copyPhoneNumbers(long long destination[], long long source[], int length)
+	{
+		for (int i = 0; i < length; i++) {
+			destination[i] = source[i];
+		}
 	}
 
 }

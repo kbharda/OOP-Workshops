@@ -142,11 +142,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\in-lab\Contact.cpp" />
+    <ClCompile Include="Contact.cpp" />
     <ClCompile Include="w6_at_home.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\in-lab\Contact.h" />
+    <ClInclude Include="Contact.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
