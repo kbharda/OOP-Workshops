@@ -37,7 +37,7 @@ namespace sict {
 	{
 		if (amount > 0) {
 			Account::credit(amount);
-			Account::debit(transactionFee);
+			Account::credit(transactionFee);
 			return true;
 		}
 		else {
