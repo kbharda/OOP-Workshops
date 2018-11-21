@@ -37,7 +37,7 @@ namespace sict {
 	{
 		if (amount > 0) {
 			Account::credit(amount);
-			Account::credit(transactionFee);
+			Account::debit(transactionFee);
 			return true;
 		}
 		else {
@@ -65,12 +65,12 @@ namespace sict {
 	}
 	void ChequingAccount::display(std::ostream& os) const
 	{
-		std::cout << "Account type: Chequing" << std::endl;
-		std::cout.setf(std::ios::fixed);
-		std::cout.precision(2);
-		std::cout << "Balance: $" << balance() << std::endl;
-		std::cout << "Per Transaction Fee: " << transactionFee << std::endl;
-		std::cout << "Monthly Fee: " << monthlyFee << std::endl;
-		std::cout.unsetf(std::ios::fixed);
+		os << "Account type: Chequing" << std::endl;
+		os.setf(std::ios::fixed);
+		os.precision(2);
+		os << "Balance: $" << balance() << std::endl;
+		os << "Per Transaction Fee: " << transactionFee << std::endl;
+		os << "Monthly Fee: " << monthlyFee << std::endl;
+		os.unsetf(std::ios::fixed);
 	}
 }
