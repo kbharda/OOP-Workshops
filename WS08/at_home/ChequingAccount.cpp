@@ -60,7 +60,7 @@ namespace sict {
 	}
 	void ChequingAccount::monthEnd()
 	{
-		debit(monthlyFee+Account::debit(transactionFee));
+		debit(monthlyFee+Account::credit(transactionFee));
 	}
 	void ChequingAccount::display(std::ostream& os) const
 	{
