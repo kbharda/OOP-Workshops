@@ -26,7 +26,7 @@ namespace sict {
 		}
 		else
 		{
-			balance = 0.0;
+			balance = 0;
 		}
 	}
 
