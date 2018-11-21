@@ -69,7 +69,7 @@ namespace sict {
 		std::cout.precision(2);
 		std::cout << "Balance: $" << balance() << std::endl;
 		std::cout << "Per Transaction Fee: " << transactionFee << std::endl;
-		std::cout << "Monthly Fee:" << monthlyFee << std::endl;
+		std::cout << "Monthly Fee: " << monthlyFee << std::endl;
 		std::cout.unsetf(std::ios::fixed);
 	}
 }
