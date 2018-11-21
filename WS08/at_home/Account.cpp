@@ -15,7 +15,7 @@ namespace sict {
 	
 	double Account::balance() const
 	{
-		return this->accountBal;
+		return accountBal;
 	}
 
 	Account::Account()
