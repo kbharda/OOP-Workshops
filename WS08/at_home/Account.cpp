@@ -42,7 +42,6 @@ namespace sict {
 		{
 			return false;
 		}
-
 	}
 
 	// Debit from balance
