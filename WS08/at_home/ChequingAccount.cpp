@@ -64,7 +64,7 @@ namespace sict {
 	}
 	void ChequingAccount::display(std::ostream& os) const
 	{
-		std::cout << "Account type : Chequing" << std::endl;
+		std::cout << "Account type: Chequing" << std::endl;
 		std::cout.setf(std::ios::fixed);
 		std::cout.precision(2);
 		std::cout << "Balance: $" << balance() << std::endl;
