@@ -12,10 +12,6 @@ using namespace std;
 
 namespace sict {
 
-	Account::Account()
-	{
-	}
-
 	double Account::balance() const
 	{
 		return accountBal;
