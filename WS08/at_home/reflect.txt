@@ -1,0 +1,44 @@
+// Workshop 8 :Virtual Functions
+// Name: Kashyap Bharda	
+// Student #: 140622176
+// Course: OOP244 Fall 2018
+// File: reflect.txt
+
+1.	What is the difference between an abstract base class and a concrete class?
+
+ans)	An abstract class contains pure virtual functions and defines an interface while a concreate class is a derived class that impleents that interfaces.
+
+****************************************************
+
+2.	Identify the functions that shadow functions of the same name in your solution?
+
+ans)	-The credit, debit, monthEnd, display and CreateAccount functions are shadowing from 'iAccount'.
+	-The credit and debit functions are shadowing from account and ChequingAccount.
+	-The monthEnd and display functions are shadowing through SavingsAccount and ChequingAccount.
+	-The CreateAccount function is shadowing from allocator.
+
+****************************************************
+
+3.	Explain what have you learned in this workshop.
+
+ans)	How to derived class appropiately with the multiple files also from abstract base class in a seprate module also expanded my knowledge shadow functions and virtual functions.
+
+
+****************************************************
+
+Quiz Reflection
+
+****************************************************
+
+3) TRUE|FALSE, The copy Assignment operator copies data from an existing object to an existing object ?
+
+A) TRUE
+-----------------------
+5) Certain class design requires prohibiting client code from copying or copy assigning any instance of a class. what can be done to prohibit copying and/or copy assigning ?
+
+A) = delete;
+-----------------------
+
+6) Assigning a temporary object to the current object requires additional code if the object manages resources what can be done to prevent the assignment operator from releasing not-as-yet acquired resources ?
+
+A) = nullptr;
