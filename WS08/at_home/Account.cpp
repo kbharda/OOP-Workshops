@@ -12,14 +12,13 @@ using namespace std;
 
 namespace sict {
 
-	
+	Account::Account()
+	{
+	}
+
 	double Account::balance() const
 	{
 		return accountBal;
-	}
-
-	Account::Account()
-	{
 	}
 
 	// One Argument Consructor
