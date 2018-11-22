@@ -7,6 +7,7 @@
 
 #ifndef SICT_IACCOUNT_H
 #define SICT_IACCOUNT_H
+#include <iostream>
 
 namespace sict {
 

@@ -20,11 +20,8 @@ namespace sict {
 
 	public:
 		Account();
-		// Private Members
 		Account(double);
-
 		bool credit(double);
-
 		bool debit(double);
 
 	protected:

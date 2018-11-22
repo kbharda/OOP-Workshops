@@ -12,33 +12,37 @@ using namespace std;
 
 namespace sict {
 
-	double interestRate = 0.05;
-	double transactionFee = 0.50;
-	double monthlyFee = 2.00;
-
 	// Calling Destrucctor
 	iAccount::~iAccount() {
 
 	}
 	// Interest Rate
-	const double intrate = 0.05;
+	//const double intrate = 0.05;
 
 	// Allocator Function
-	iAccount * CreateAccount(const char* accountType, double balance)
+	iAccount* CreateAccount(const char* accountType, double balance)
 	{
 		iAccount* account = nullptr;
 
+		double interestRate = 0.05;
+		double transactionFee = 0.50;
+		double monthlyFee = 2.00;
+
 		if (accountType[0] == 'S' || accountType[0] == 's')
 		{
-			account = new SavingsAccount(balance, intrate);
+			account = new SavingsAccount(balance, interestRate);
+			return account;
 		}
 		else if (accountType[0] == 'C' || accountType[0] == 'c')
 		{
-			account = new ChequingAccount(transactionFee, balance, monthlyFee);
+			account = new ChequingAccount(balance, transactionFee, monthlyFee);
+			return account;
 		}
-
-		return account;
-
+		else
+		{
+			account = nullptr;
+			return account;
+		}
 	}
 }
 

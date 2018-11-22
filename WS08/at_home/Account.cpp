@@ -12,13 +12,17 @@ using namespace std;
 
 namespace sict {
 
+	Account::Account() {
+		accountBal = 0;
+	}
+
 	double Account::balance() const
 	{
 		return accountBal;
 	}
 
 	// One Argument Consructor
-	Account::Account(double balance)
+	Account::Account(double balance = 0)
 	{
 		if (balance > 0)
 		{
@@ -31,11 +35,11 @@ namespace sict {
 	}
 
 	// Credit from Balance
-	bool Account::credit(double balance)
+	bool Account::credit(double cBalance)
 	{
-		if (balance > 0)
+		if (cBalance > 0)
 		{
-			this->accountBal += balance;
+			this->accountBal += cBalance;
 			return true;
 		}
 		else
@@ -45,11 +49,11 @@ namespace sict {
 	}
 
 	// Debit from balance
-	bool Account::debit(double balance)
+	bool Account::debit(double dBalance)
 	{
-		if (balance > 0)
+		if (dBalance > 0)
 		{
-			this->accountBal -= balance;
+			this->accountBal -= dBalance;
 			return true;
 		}
 		else

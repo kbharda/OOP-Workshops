@@ -12,7 +12,7 @@ using namespace std;
 
 namespace sict {
 
-	ChequingAccount::ChequingAccount(double transaction, double balance, double month) :Account(balance)
+	ChequingAccount::ChequingAccount(double balance, double transaction, double month) :Account(balance)
 	{
 		if (transaction > 0)
 		{
@@ -33,11 +33,13 @@ namespace sict {
 		}
 	}
 
-	bool ChequingAccount::credit(double amount)
+	bool ChequingAccount::credit(double cAmount)
 	{
-		if (amount > 0) {
-			Account::credit(amount);
+		if (cAmount > 0) {
+			
+			Account::credit(cAmount);
 			Account::debit(transactionFee);
+
 			return true;
 		}
 		else {
@@ -45,11 +47,11 @@ namespace sict {
 			return false;
 		}
 	}
-	bool ChequingAccount::debit(double amount)
+	bool ChequingAccount::debit(double dAmount)
 	{
-		if (amount > 0)
+		if (dAmount > 0)
 		{
-			Account::debit(amount);
+			Account::debit(dAmount);
 			Account::debit(transactionFee);
 			return true;
 		}
@@ -61,7 +63,7 @@ namespace sict {
 	void ChequingAccount::monthEnd()
 	{
 		Account::debit(monthlyFee);
-		Account::debit(transactionFee + transactionFee);
+		Account::debit(transactionFee);
 	}
 	void ChequingAccount::display(std::ostream& os) const
 	{

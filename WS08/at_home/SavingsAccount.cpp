@@ -27,9 +27,11 @@ namespace sict {
 	// Interest calculate and assign to credit bal with interest 
 	void SavingsAccount::monthEnd()
 	{
-		double interest = this->interestRate * balance();
+		double interestEarned;
+		
+		interestEarned = (balance() * interestRate);
 
-		credit(interest);
+		credit(interestEarned);
 	}
 
 	// Display Function with set value
@@ -39,7 +41,7 @@ namespace sict {
 		std::cout.setf(std::ios::fixed);
 		std::cout.precision(2);
 		std::cout << "Balance: $" << balance() << std::endl;
-		std::cout << "Interest Rate (%): " << this->interestRate * 100 << std::endl;
+		std::cout << "Interest Rate (%): " << interestRate * 100 << std::endl;
 		std::cout.unsetf(std::ios::fixed);
 	}
 }
