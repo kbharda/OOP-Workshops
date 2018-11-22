@@ -16,8 +16,6 @@ namespace sict {
 	iAccount::~iAccount() {
 
 	}
-	// Interest Rate
-	//const double intrate = 0.05;
 
 	// Allocator Function
 	iAccount* CreateAccount(const char* accountType, double balance)
