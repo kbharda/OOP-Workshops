@@ -3,7 +3,7 @@
 // Name: Kashyap Bharda	
 // Student #: 140622176
 // Course: OOP244 Fall 2018
-// File: ChequingAccount.h
+// File: ChequingAccount.cpp
 
 #include <iostream>
 #include "ChequingAccount.h"
