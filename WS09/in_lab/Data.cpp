@@ -22,7 +22,7 @@ namespace sict {
 
 		std::cout.setf(std::ios::fixed);
 		std::cout.precision(2);
-		std::cout << "Population change from " << year[0] << " to " << year[n - 1] << " is " << static_cast<double>(population[n - 1] - population[0]) / 1000000 << " million " << std::endl;
+		std::cout << "Population change from " << year[0] << " to " << year[n - 1] << " is " << static_cast<double>(population[n - 1] - population[0]) / 1000000 << " million" << std::endl;
 
 
 		// Q2. print whether violent crime rate has gone up or down between 2000 and 2005
