@@ -1,5 +1,5 @@
 // Workshop 9 - Function Templates
-// File: ws9_lab.cpp
+// File: ws9_home.cpp
 // Version: 2.0
 // Date: 2017/12/15
 // Author: Chris Szalwinski, based on previous work by Hasan Murtaza

@@ -1,0 +1,33 @@
+
+// Workshop 9 :Function Templates 
+// Name: Kashyap Bharda	
+// Student #: 140622176
+// Course: OOP244 Fall 2018
+// File: reflect.txt
+
+1.	What happens if you try to put your templated functions in Data.cpp? Does your source code compile if you move all functions to Data.h? Explain.
+A.	An Error occured when compiled because the compiler does not recognoze the template when it placed into the .cpp file. The compiler need to read the templete code and function code at the same time.
+
+2.	Move one templated function into ws9_lab.cpp. Does it work now? Do you need to define the template function above main(), before it is used, or can you define it below main()?
+A.	We can not use the templete before it is compiled unless we declare it first. In this case it will still not work even if it is declared after main.
+
+3.	Could you have done this lab without templates, by just overloading your functions in Data.h to accept integer and double arguments? What is the advantage of using templates?
+A.	The overloaded functions could work but it introduces a lot of redundant code and an extra work. Templates reduces the repeating code by allowing various parameter types instead of seprate functions for the each data type.
+
+4.	Are the following equivalent? 
+	template<class T> 
+	template<typename T>   
+A.	The keyword 'class' and 'template' are equivalent in this case.
+
+*******************
+**Quiz Reflection**
+*******************
+
+(1) What is a c++ template ?
+(A) In c++ a templete allows function or class to work on more than one data type at once without writing multiple codes for different data types. templates are often used in large programs for the purpose of reusability and flexibility.
+
+(2) What is constrained cast ?
+(A)	A Constrained cast is type of casting which manipulates the constness of the object ppointed by a pointer, either to be set or to be removed for example in order to pass a const pointer a function that expects a non-const argument.
+
+(5) True or False a reinterpret_cast is typically portable ?
+(A)	FALSE 
