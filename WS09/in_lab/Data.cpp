@@ -37,7 +37,7 @@ namespace sict {
 
 		// Q4. Print the min and max violentCrime rates
 
-		std::cout << "The Minimun Violent Crime rate was " << static_cast<int>(min(violentCrimeRate, n)) << endl;
+		std::cout << "The Minimum Violent Crime rate was " << static_cast<int>(min(violentCrimeRate, n)) << endl;
 		std::cout << "The Maximum Violent Crime rate was " << static_cast<int>(max(violentCrimeRate, n)) << endl;
 
 		std::cout.unsetf(std::ios::fixed);
