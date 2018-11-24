@@ -27,7 +27,7 @@ namespace sict {
 
 		// Q2. print whether violent crime rate has gone up or down between 2000 and 2005
 
-		std::cout << "Violet Crime trend is " << (violentCrimeRate[n - 1] < violentCrimeRate[0] ? "down" : "up") << std::endl;
+		std::cout << "Violent Crime trend is " << (violentCrimeRate[n - 1] < violentCrimeRate[0] ? "down" : "up") << std::endl;
 
 
 		// Q3 print the GTA number accurate to 0 decimal places
